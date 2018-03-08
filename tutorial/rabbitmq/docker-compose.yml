@@ -1,0 +1,17 @@
+version: '3'
+services:
+  worker:
+    build: ./
+    volumes:
+      - ./:/app
+    entrypoint: /app/entrypoint.sh
+    depends_on:
+      - rabbitmq
+  rabbitmq:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: test-user
+      RABBITMQ_DEFAULT_PASS: password
+      RABBITMQ_DEFAULT_VHOST: test-vhost
+    ports:
+      - "15672:15672"

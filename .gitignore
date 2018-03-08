@@ -1,0 +1,7 @@
+# Emacs
+*~
+\#*#
+
+# python
+*.py[co]
+__pycache__
