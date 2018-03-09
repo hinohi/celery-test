@@ -1,0 +1,21 @@
+version: '3'
+services:
+  kvs-1:
+    image: couchbase:community-4.1.1
+    ports:
+      - "18091:8091"
+  kvs-2:
+    image: couchbase:community-4.1.1
+    ports:
+      - "28091:8091"
+  kvs-manage:
+    image: couchbase:community-4.1.1
+    environment:
+      CB_REST_USERNAME: admin
+      CB_REST_PASSWORD: password
+    volumes:
+      - ./kvs-manage.sh:/kvs-manage.sh
+    command: /kvs-manage.sh
+    depends_on:
+      - kvs-1
+      - kvs-2
